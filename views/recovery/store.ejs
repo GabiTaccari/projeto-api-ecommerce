@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <% include ('../partials/header') %>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css​">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm6 col-sm-offset-3">
+                <h2>Recuperar Senha</h2>
+                <hr><br>
+
+                <% if(sucess){ %>
+                    <div class="alert alert-succes"></div>
+                        <%= success %>  
+                <% } %>
+
+                <div class="alert alert-succes">
+                    <h3>Agora pode fazer seu login novamente.</h3>
+                </div>
+
+                <% if(error){ %>
+                    <div class="alert alert-danger"></div>
+                        <%= error %>  
+                <% } %>
+
+                <% if (!sucess){%>
+                    <p>
+                        Digite aqui sua nova senha
+                    </p>
+
+                    <form action="/v1/api/usuarios/senha-recuperada" method="POST">
+                        
+                        <input type="hidden" name="token" value="<% token %>" class="form-control" placeholder="Digite seu email"/>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="Digite dua nova senha"/>
+                        </div>
+                        <button class="btn btn-primary">Criar nova Senha</button>
+                    </form>
+
+                <% } %>
+
+                <form action="/api/v1/usuarios/recuperar-senha" method="POST">
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Digite seu email"/>
+                    </div>
+                    <button class="btn btn-primary">Recuperar Senha</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
